@@ -46,17 +46,17 @@ void init_mem()
 
 word_t paddr_read(paddr_t addr, int len)
 {
-#ifdef CONFIG_MTRACE
-  if (likely(in_pmem(addr)))
-  {
-    word_t w = pmem_read(addr, len);
-    if (addr >= 0x806BDFF8)
-    {
-      Log(" Read  from memory at %#.8x for %d bytes for %lx.", addr, len, w);
-      // error_finfo();
-    }
-  }
-#endif
+  // #ifdef CONFIG_MTRACE
+  //   if (likely(in_pmem(addr)))
+  //   {
+  //     word_t w = pmem_read(addr, len);
+  //     if (addr >= 0x806BDFF8)
+  //     {
+  // Log(" Read  from memory at %#.8x for %d bytes for %lx.", addr, len, w);
+  // error_finfo();
+  //     }
+  //   }
+  // #endif
   if (likely(in_pmem(addr)))
     return pmem_read(addr, len);
   MUXDEF(CONFIG_DEVICE, return mmio_read(addr, len),
@@ -66,13 +66,13 @@ word_t paddr_read(paddr_t addr, int len)
 
 void paddr_write(paddr_t addr, int len, word_t data)
 {
-#ifdef CONFIG_MTRACE
-  if (addr >= 0x806BDFF8)
-  {
-    Log("Write %lx to memory at %#.8x for %d bytes.", data, addr, len);
-    // error_finfo();
-  }
-#endif
+  // #ifdef CONFIG_MTRACE
+  //   if (addr >= 0x806BDFF8)
+  //   {
+  // Log("Write %lx to memory at %#.8x for %d bytes.", data, addr, len);
+  // error_finfo();
+  //   }
+  // #endif
   if (likely(in_pmem(addr)))
   {
     pmem_write(addr, len, data);

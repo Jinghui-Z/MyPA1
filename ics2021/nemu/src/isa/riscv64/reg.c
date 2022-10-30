@@ -11,7 +11,7 @@ void isa_reg_display()
 {
   for (int i = 0; i < 32; ++i)
   {
-    printf("%s : %ld\n", reg_name(i, 2), gpr(i));
+    printf("%s : 0x%lx\n", reg_name(i, 2), gpr(i));
   }
 }
 

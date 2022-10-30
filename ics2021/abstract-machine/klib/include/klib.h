@@ -18,6 +18,7 @@ extern "C"
   void *memmove(void *dst, const void *src, size_t n);
   int memcmp(const void *s1, const void *s2, size_t n);
   size_t strlen(const char *s);
+  size_t strnlen(const char *s, size_t maxlen);
   char *strcat(char *dst, const char *src);
   char *strcpy(char *dst, const char *src);
   char *strncpy(char *dst, const char *src, size_t n);
@@ -38,6 +39,22 @@ extern "C"
   int snprintf(char *str, size_t size, const char *format, ...);
   int vsprintf(char *str, const char *format, va_list ap);
   int vsnprintf(char *str, size_t size, const char *format, va_list ap);
+  static inline unsigned int __mulu10(unsigned int n)
+  {
+    return (n << 3) + (n << 1);
+  }
+
+  static inline unsigned int __divu10(unsigned int n)
+  {
+    unsigned int q, r;
+    q = (n >> 1) + (n >> 2);
+    q = q + (q >> 4);
+    q = q + (q >> 8);
+    q = q + (q >> 16);
+    q = q >> 3;
+    r = n - __mulu10(q);
+    return q + ((r + 6) >> 4);
+  }
 
 // assert.h
 #ifdef NDEBUG

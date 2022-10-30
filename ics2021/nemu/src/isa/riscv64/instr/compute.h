@@ -76,6 +76,14 @@ def_EHelper(divw)
 {
   rtl_divw(s, ddest, dsrc1, dsrc2);
 }
+def_EHelper(div)
+{
+  rtl_divs_q(s, ddest, dsrc1, dsrc2);
+}
+def_EHelper(divuw)
+{
+  rtl_divuw(s, ddest, dsrc1, dsrc2);
+}
 def_EHelper(remw)
 {
   rtl_remw(s, ddest, dsrc1, dsrc2);
@@ -108,9 +116,21 @@ def_EHelper(sllw)
 {
   rtl_sllw(s, ddest, dsrc1, dsrc2);
 }
+def_EHelper(sll)
+{
+  rtl_sll(s, ddest, dsrc1, dsrc2);
+}
+def_EHelper(srl)
+{
+  rtl_srl(s, ddest, dsrc1, dsrc2);
+}
 def_EHelper(sraw)
 {
   rtl_sraw(s, ddest, dsrc1, dsrc2);
+}
+def_EHelper(sra)
+{
+  rtl_sra(s, ddest, dsrc1, dsrc2);
 }
 def_EHelper(srlw)
 {
@@ -132,9 +152,17 @@ def_EHelper(xori)
 {
   rtl_xori(s, ddest, dsrc1, id_src2->imm);
 }
+def_EHelper(ori)
+{
+  rtl_ori(s, ddest, dsrc1, id_src2->imm);
+}
 def_EHelper(or)
 {
   rtl_or(s, ddest, dsrc1, dsrc2);
+}
+def_EHelper(xor)
+{
+  rtl_xor(s, ddest, dsrc1, dsrc2);
 }
 def_EHelper(slli)
 {
@@ -152,7 +180,36 @@ def_EHelper(lui)
 {
   rtl_li(s, ddest, id_src1->imm);
 }
+def_EHelper(mulh)
+{
+  rtl_muls_hi(s, ddest, dsrc1, dsrc2);
+}
 def_EHelper(mulhu)
 {
   rtl_mulu_hi(s, ddest, dsrc1, dsrc2);
+}
+def_EHelper(mulhsu)
+{
+  rtl_mulsu_hi(s, ddest, dsrc1, dsrc2);
+}
+def_EHelper(divu)
+{
+  rtl_divu_q(s, ddest, dsrc1, dsrc2);
+}
+def_EHelper(remuw)
+{
+  rtl_remuw(s, ddest, dsrc1, dsrc2);
+}
+def_EHelper(remu)
+{
+  rtl_divu_r(s, ddest, dsrc1, dsrc2);
+}
+def_EHelper(rem)
+{
+  rtl_divs_r(s, ddest, dsrc1, dsrc2);
+}
+
+def_EHelper(slti)
+{
+  rtl_setrelopi(s, RELOP_LT, ddest, id_src1->preg, id_src2->imm);
 }
